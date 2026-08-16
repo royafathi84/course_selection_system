@@ -1,0 +1,10 @@
+[
+    {
+        "id": 1,
+        "first_name": "Roya",
+        "last_name": "Fathi",
+        "student_number": "123456789",
+        "major": "Computer Engineering",
+        "selected_course_ids": []
+    }
+]
