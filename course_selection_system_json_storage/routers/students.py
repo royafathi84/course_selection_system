@@ -34,8 +34,8 @@ def remove_student(student_id:int):
     delete_student(student_id)
     return{"message": "دانشجو با موفقیت حذف شد"}
 
-@router.delete("/{student_id}/courses")
-def returive_student_courses(student_id: int):
+@router.get("/{student_id}/courses")
+def retrieve_student_courses(student_id: int):
     courses=get_student_courses(student_id)
     return[course.to_dict() for course in courses]
 

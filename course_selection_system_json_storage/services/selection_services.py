@@ -19,7 +19,7 @@ def drop_course_for_student(student_id : int, course_id : int):
 
 def get_student_courses(student_id: int):
     student=get_student_by_id(student_id)
-    return student.get_courses
+    return student.get_courses()
 
 def assign_professor_to_course(course_id: int, professor_id: int):
     course=get_course_by_id(course_id)
