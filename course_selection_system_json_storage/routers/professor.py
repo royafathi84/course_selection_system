@@ -12,12 +12,14 @@ from services.professor_service import (
 router = APIRouter(prefix="/professors", tags=["Professors"])
 
 
+@router.post("", status_code=status.HTTP_201_CREATED)
 @router.post("/", status_code=status.HTTP_201_CREATED)
 def create_new_professor(professor: ProfessorCreate):
     new_professor = create_professor(professor)
     return new_professor.to_dict()
 
 
+@router.get("")
 @router.get("/")
 def list_professors():
     return [professor.to_dict() for professor in get_all_professors()]

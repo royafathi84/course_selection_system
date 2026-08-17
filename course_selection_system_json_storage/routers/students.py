@@ -4,16 +4,23 @@ from schemas.student_schema import StudentCreate, StudentUpdate
 
 from services.student_service import create_student, get_all_students, get_student_by_id, update_student, delete_student
 
-from services.selection_services import select_course_for_student, drop_course_for_student, get_student_courses
+from services.selection_services import (
+    select_course_for_student,
+    drop_course_for_student,
+    drop_all_courses_for_student,
+    get_student_courses,
+)
 
 
 router= APIRouter(prefix="/students", tags=["Students"])
 
-@router.post("/",status_code=status.HTTP_201_CREATED)
+@router.post("", status_code=status.HTTP_201_CREATED)
+@router.post("/", status_code=status.HTTP_201_CREATED)
 def create_new_student(student: StudentCreate):
     new_student=create_student(student)
     return new_student.to_dict()
 
+@router.get("")
 @router.get("/")
 def list_students():
     return[student.to_dict() for student in get_all_students()]
@@ -38,6 +45,14 @@ def remove_student(student_id:int):
 def retrieve_student_courses(student_id: int):
     courses=get_student_courses(student_id)
     return[course.to_dict() for course in courses]
+
+@router.delete("/{student_id}/courses")
+def drop_all_student_courses(student_id: int):
+    student=drop_all_courses_for_student(student_id)
+    return{
+        "message":"همه درس های دانشجو حذف شد",
+        "student": student.to_dict()
+    }
 
 
 @router.post("/{student_id}/courses/{course_id}")

@@ -21,6 +21,13 @@ def get_student_courses(student_id: int):
     student=get_student_by_id(student_id)
     return student.get_courses()
 
+def drop_all_courses_for_student(student_id: int):
+    student=get_student_by_id(student_id)
+    for course in list(student.selected_courses):
+        student.drop_course(course)
+    save_all()
+    return student
+
 def assign_professor_to_course(course_id: int, professor_id: int):
     course=get_course_by_id(course_id)
     professor=get_professor_by_id(professor_id)
