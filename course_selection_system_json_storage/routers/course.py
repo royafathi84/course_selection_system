@@ -14,14 +14,12 @@ from services.selection_services import assign_professor_to_course
 router = APIRouter(prefix="/courses", tags=["Courses"])
 
 @router.post("", status_code=status.HTTP_201_CREATED)
-@router.post("/", status_code=status.HTTP_201_CREATED)
 def create_new_course(course: CourseCreate):
     new_course = create_course(course)
     return new_course.to_dict()
 
 
 @router.get("")
-@router.get("/")
 def list_courses():
     return [course.to_dict() for course in get_all_courses()]
 
