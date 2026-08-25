@@ -15,13 +15,11 @@ from services.selection_services import (
 router= APIRouter(prefix="/students", tags=["Students"])
 
 @router.post("", status_code=status.HTTP_201_CREATED)
-@router.post("/", status_code=status.HTTP_201_CREATED)
 def create_new_student(student: StudentCreate):
     new_student=create_student(student)
     return new_student.to_dict()
 
 @router.get("")
-@router.get("/")
 def list_students():
     return[student.to_dict() for student in get_all_students()]
 
